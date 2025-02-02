@@ -33,10 +33,22 @@ form.addEventListener("submit", async (e) => {
             htmlData += `
                  <div class="card card-city">
                     <div class="card-body card-primary">
-                        <h4 class="card-title fw-bolder">${data.name}, ${data.sys.country}</h4>
-                        <p class="card-text fw-semibold mb-2"> ${data.main.temp}°C</p>
-                        <p class="card-text mb-2"> ${data.weather[0].description}</p>
-                        <p class="card-text">Humidity: ${data.main.humidity}%</p>
+                        <h4 class="card-title fw-bolder">
+                        ${data.name},
+                         ${data.sys.country}
+                         <i class="fa-solid fa-globe text-secondary ms-1"></i>
+                         </h4>
+                        <p class="card-text fw-semibold mb-2"> 
+                            <i class="fa-solid fa-temperature-low text-danger"></i>
+                            ${data.main.temp}°C
+                        </p>
+                        <p class="card-text mb-2"> 
+                        <i class="fa-solid fa-cloud text-primary"></i>
+                        ${data.weather[0].description}
+                        </p>
+                        <p class="card-text">
+                        <i class="fa-solid fa-droplet text-info"></i>
+                        Humidity: ${data.main.humidity}%</p>
                     </div>
                 </div>
                 `);

@@ -22,6 +22,7 @@ body {
 
 #input-cities {
     padding-left: 2rem;
+    margin-bottom: 1rem;
     border: 0.15rem solid #48CAE4;
     border-radius: 2rem;
 }
@@ -34,6 +35,9 @@ body {
 .card-city {
     margin: 2rem 0.5rem;
     text-align: center;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .card-city div {
@@ -45,4 +49,14 @@ body {
 .card-city div:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.alert {
+    width: 90%;
+    margin: auto;
+}
+
+canvas {
+    min-height: 10vh;
+    display: block;
 }

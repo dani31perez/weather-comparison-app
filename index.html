@@ -13,7 +13,10 @@
     <div class="container py-5">
         <div class="card">
             <div class="card-body card-info">
-                <h5 class="card-title weather-title fs-1">Weather App</h5>
+                <h5 class="card-title weather-title fs-1">
+                    Weather App
+                    <i class="ms-3 fa-solid fa-cloud-meatball"></i>
+                </h5>
                 <p class="card-text text-center pb-4">Get the current weather for any city.</p>
                 <form id="weather-form">
                     <div class="form-div">
@@ -21,13 +24,17 @@
                             <input type="text" class="form-control form-control-lg" id="input-cities"
                                 placeholder="Enter a city name" aria-describedby="input-cities">
                         </div>
-                        <button type="submit" class="btn btn-primary">Get Weather</button>
+                        <button type="submit" class="btn btn-primary fs-5">
+                            <i class="fa-solid fa-magnifying-glass-location me-2 fs-4"></i>
+                            Get Weather
+                        </button>
                     </div>
                 </form>
                 <div id="weather-result"></div>
             </div>
         </div>
     </div>
+    <script src="https://kit.fontawesome.com/c90deadf0d.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./index.js"></script>
 </body>
