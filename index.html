@@ -12,6 +12,23 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+    <div class="container">
+        <div class="card">
+            <div class="card-body card-info">
+              <h5 class="card-title weather-title fs-1">Weather App</h5>
+              <p class="card-text text-center pb-4">Get the current weather for any city.</p>
+              <form id="weather-form">
+                <div class="form-div">
+                <div class="mb-3">
+                  <input type="text" class="form-control form-control-lg" id="input-cities" placeholder="Enter a city name" aria-describedby="input-cities">
+                </div>
+                <button type="submit" class="btn btn-primary">Get Weather</button>
+            </div>
+              </form>
+              <div id="weahter-result"></div>
+            </div>
+          </div>
+        </div>
     <script src="./index.js"></script>
 </body>
 </html>
