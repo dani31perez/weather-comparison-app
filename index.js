@@ -26,7 +26,7 @@ form.addEventListener("submit", async (e) => {
             return res.json();
         });
 
-        const weatherData = await Promise.all(weatherPromises).catch(e => {throw new Error("City not found")});
+        const weatherData = await Promise.all(weatherPromises).catch(e => { throw new Error("City not found") });
 
         let htmlData = "";
         weatherData.map(data =>
@@ -51,36 +51,50 @@ form.addEventListener("submit", async (e) => {
             temperatures.push(city.main.temp);
         });
 
-        
-
-          const dataChar = {
+        const dataChar = {
             labels: cityLabels,
             datasets: [{
-              label: 'Temperature in °C',
-              data: temperatures,
-              borderWidth: 1
+                label: 'Temperature in °C',
+                data: temperatures,
+                borderWidth: 1,
+                backgroundColor: [
+                    'rgba(72, 202, 228, 0.6)',
+                    'rgba(3, 169, 244, 0.6)',
+                    'rgba(0, 131, 143, 0.6)',
+                    'rgba(255, 159, 64, 0.6)',
+                    'rgba(0, 190, 172, 0.6)',
+                    'rgba(255, 193, 7, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(72, 202, 228, 1)',
+                    'rgba(3, 169, 244, 1)',
+                    'rgba(0, 131, 143, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(0, 190, 172, 1)',
+                    'rgba(255, 193, 7, 1)'
+                ],
             }]
-          };
+        };
 
-          const config = {
+        const config = {
             type: 'bar',
             data: dataChar,
             options: {
-              scales: {
-                y: {
-                  beginAtZero: true,
-                }
-              },
-              minBarLength: 1
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    }
+                },
+                minBarLength: 1
             },
-          };
+        };
 
-          resultDiv.innerHTML += 
-          `<canvas id="myChart" width="400" height="200"></canvas>
+        resultDiv.innerHTML +=
+            `<canvas id="myChart" width="400" height="200"></canvas>
           `;
 
-          const chart = document.getElementById("myChart").getContext("2d");
-          new Chart(chart, config);
+        const chart = document.getElementById("myChart").getContext("2d");
+        new Chart(chart, config);
 
     } catch (error) {
         resultDiv.innerHTML = ` <div class="alert alert-primary margin-result">${error.message}</div>`
