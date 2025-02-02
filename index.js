@@ -16,7 +16,7 @@ form.addEventListener("submit", async (e) => {
 
     try {
         const apiKey = "ca763dd1247bd005c1248cf3dd16ab9b";
-        if (city.includes(",")) {
+        
             const cityNames = city.split(",").map(city => city.trim());
             const weatherPromises = cityNames.map(async city => {
                 let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
@@ -26,8 +26,6 @@ form.addEventListener("submit", async (e) => {
                 return res.json();
             });
 
-            
-        }
     } catch (error) {
         resultDiv.innerHTML = ` <div class="alert alert-primary margin-result"><${error.message}</div>`
     }
