@@ -26,7 +26,7 @@ form.addEventListener("submit", async (e) => {
             return res.json();
         });
 
-        const weatherData = await Promise.all(weatherPromises).catch(e =>resultDiv.innerHTML = ` <div class="alert alert-primary margin-result"><${error.message}</div>`);
+        const weatherData = await Promise.all(weatherPromises).catch(e => {throw new Error("City not found")});
 
         let htmlData = "";
         weatherData.map(data =>
@@ -43,8 +43,47 @@ form.addEventListener("submit", async (e) => {
 
         resultDiv.innerHTML = htmlData;
 
+        let cityLabels = [];
+        let temperatures = [];
+
+        weatherData.forEach(city => {
+            cityLabels.push(city.name);
+            temperatures.push(city.main.temp);
+        });
+
+        
+
+          const dataChar = {
+            labels: cityLabels,
+            datasets: [{
+              label: 'Temperature in °C',
+              data: temperatures,
+              borderWidth: 1
+            }]
+          };
+
+          const config = {
+            type: 'bar',
+            data: dataChar,
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: false,
+                }
+              },
+              minBarLength: 1
+            },
+          };
+
+          resultDiv.innerHTML += 
+          `<canvas id="myChart" width="400" height="200"></canvas>
+          `;
+
+          const chart = document.getElementById("myChart").getContext("2d");
+          const myChart = new Chart(chart, config);
+
     } catch (error) {
-        resultDiv.innerHTML = ` <div class="alert alert-primary margin-result"><${error.message}</div>`
+        resultDiv.innerHTML = ` <div class="alert alert-primary margin-result">${error.message}</div>`
     }
 
 
