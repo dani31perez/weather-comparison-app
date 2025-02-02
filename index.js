@@ -31,11 +31,11 @@ form.addEventListener("submit", async (e) => {
         let htmlData = "";
         weatherData.map(data =>
             htmlData += `
-                 <div class="card">
-                    <div class="card-body card-primary card-city">
-                        <h5 class="card-title">${data.name}, ${data.sys.country}</h5>
-                        <p class="card-text"> ${data.main.temp}°C</p>
-                        <p class="card-text "> ${data.weather[0].description}</p>
+                 <div class="card card-city">
+                    <div class="card-body card-primary">
+                        <h4 class="card-title fw-bolder">${data.name}, ${data.sys.country}</h4>
+                        <p class="card-text fw-semibold mb-2"> ${data.main.temp}°C</p>
+                        <p class="card-text mb-2"> ${data.weather[0].description}</p>
                         <p class="card-text">Humidity: ${data.main.humidity}%</p>
                     </div>
                 </div>
@@ -68,7 +68,7 @@ form.addEventListener("submit", async (e) => {
             options: {
               scales: {
                 y: {
-                  beginAtZero: false,
+                  beginAtZero: true,
                 }
               },
               minBarLength: 1
@@ -80,7 +80,7 @@ form.addEventListener("submit", async (e) => {
           `;
 
           const chart = document.getElementById("myChart").getContext("2d");
-          const myChart = new Chart(chart, config);
+          new Chart(chart, config);
 
     } catch (error) {
         resultDiv.innerHTML = ` <div class="alert alert-primary margin-result">${error.message}</div>`

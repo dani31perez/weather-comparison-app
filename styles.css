@@ -10,12 +10,14 @@ body{
     font-family: 'Pacifico', cursive;
     font-weight: 500;
     font-size: 1.2rem;
+    background-color: rgb(247, 246, 246);
 }
 
 .weather-title{
     text-align: center;
     color: #48CAE4;
     padding: 0.5rem;
+    font-weight: bold;
 }
 
 #input-cities {
@@ -27,4 +29,20 @@ body{
 .form-div{
     margin: 0 auto 2rem;
     width: 90%;
+}
+
+.card-city {
+    margin: 2rem 0.5rem;
+    text-align: center;
+}
+
+.card-city div{
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card-city div:hover{
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
 }
