@@ -4,6 +4,7 @@ const resultDiv = document.getElementById("weather-result");
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    //alerta por si el ususario no ingresa texto en el input 
     const city = document.getElementById("input-cities").value.trim();
     if (!city) {
         resultDiv.innerHTML = `
@@ -17,7 +18,10 @@ form.addEventListener("submit", async (e) => {
     try {
         const apiKey = "ca763dd1247bd005c1248cf3dd16ab9b";
 
+        //Separamos las ciudades por comas y quitamos los espacios
         const cityNames = city.split(",").map(city => city.trim());
+
+        //Hacemos el fetch para cada ciudad
         const weatherPromises = cityNames.map(async city => {
             let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
             if (!res.ok) {
@@ -26,8 +30,11 @@ form.addEventListener("submit", async (e) => {
             return res.json();
         });
 
+        //Resolvemos todas las promesas que hicimos anteriormente
         const weatherData = await Promise.all(weatherPromises).catch(e => { throw new Error("City not found") });
 
+
+        //Iteramos sobre las promesas resueltas y generamos el código html para cada ciudad
         let htmlData = "";
         weatherData.map(data =>
             htmlData += `
@@ -55,6 +62,7 @@ form.addEventListener("submit", async (e) => {
 
         resultDiv.innerHTML = htmlData;
 
+        //Guardamos la información de los labels y temperaturas para hacer el chart
         let cityLabels = [];
         let temperatures = [];
 
@@ -63,6 +71,7 @@ form.addEventListener("submit", async (e) => {
             temperatures.push(city.main.temp);
         });
 
+        //Guardamos los colores y la ionformación que alamacenamos anteriormente
         const dataChar = {
             labels: cityLabels,
             datasets: [{
@@ -88,6 +97,7 @@ form.addEventListener("submit", async (e) => {
             }]
         };
 
+        //Configuramos el chart
         const config = {
             type: 'bar',
             data: dataChar,
@@ -101,10 +111,12 @@ form.addEventListener("submit", async (e) => {
             },
         };
 
+        //Creamos el canvas para colocar ahí el chart
         resultDiv.innerHTML +=
             `<canvas id="myChart" width="400" height="200"></canvas>
           `;
 
+        //Creamos el chart
         const chart = document.getElementById("myChart").getContext("2d");
         new Chart(chart, config);
 
